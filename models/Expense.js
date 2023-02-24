@@ -11,7 +11,7 @@ const expenseSchema = new Schema({
   description: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
 
   amount: {
