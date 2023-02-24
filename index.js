@@ -15,12 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middlewares
-app.use(
-  cors({
-    origin: 'https://money-mind.vercel.app',
-    credentials: true,
-  })
-);
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());

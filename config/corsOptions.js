@@ -2,6 +2,7 @@ const allowedOrigins = [
   'http://127.0.0.1:3000',
   'http://localhost:3000',
   'https://money-mind.vercel.app',
+  'https://money-mind.up.railway.app/',
 ];
 
 const corsOptions = {

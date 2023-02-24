@@ -67,8 +67,8 @@ const login = asyncHandler(async (req, res, next) => {
   // Create secure cookie with accessToken
   res.cookie('accessToken', accessToken, {
     httpOnly: true,
-    secure: true,
-    sameSite: 'none',
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'Strict',
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
@@ -101,6 +101,7 @@ const refresh = asyncHandler(async (req, res, next) => {
   const accessToken = generateAccessToken(foundUser.id);
 
   res.cookie('accessToken', accessToken, {
+    domain: '.railway.app',
     httpOnly: true,
     secure: process.env.NODE_ENV !== 'development',
     sameSite: 'Strict',
