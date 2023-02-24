@@ -119,7 +119,12 @@ const refresh = asyncHandler(async (req, res, next) => {
 });
 
 const logout = (req, res, next) => {
-  res.clearCookie('accessToken');
+  res.clearCookie('accessToken', {
+    domain: '.railway.app',
+    httpOnly: true,
+    secure: true,
+    sameSite: process.env.NODE_ENV === 'production',
+  });
   return res.json({ message: "You've been logged out." });
 };
 
