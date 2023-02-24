@@ -66,7 +66,6 @@ const login = asyncHandler(async (req, res, next) => {
 
   // Create secure cookie with accessToken
   res.cookie('accessToken', accessToken, {
-    domain: 'money-mind.vercel.app',
     httpOnly: true,
     secure: true,
     sameSite: 'none',
