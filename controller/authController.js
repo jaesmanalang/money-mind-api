@@ -68,7 +68,7 @@ const login = asyncHandler(async (req, res, next) => {
   res.cookie('accessToken', accessToken, {
     domain: 'money-mind.vercel.app',
     httpOnly: true,
-    secure: process.env.NODE_ENV !== 'development',
+    secure: true,
     sameSite: 'none',
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
