@@ -66,6 +66,7 @@ const login = asyncHandler(async (req, res, next) => {
 
   // Create secure cookie with accessToken
   res.cookie('accessToken', accessToken, {
+    domain: '.railway.app',
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'Strict',
