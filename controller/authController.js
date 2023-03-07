@@ -65,8 +65,9 @@ const login = asyncHandler(async (req, res, next) => {
   const accessToken = generateAccessToken(foundUser.id);
 
   // Create secure cookie with accessToken
-  res.cookie('accessToken', accessToken, {
-    domain: '.railway.app',
+  res.status(202).cookie('accessToken', accessToken, {
+    // domain: '.railway.app',
+    path: '/',
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'Strict',
@@ -102,10 +103,11 @@ const refresh = asyncHandler(async (req, res, next) => {
   const accessToken = generateAccessToken(foundUser.id);
 
   res.cookie('accessToken', accessToken, {
-    domain: '.railway.app',
+    // domain: '.railway.app',
+    path: '/',
     httpOnly: true,
     secure: process.env.NODE_ENV !== 'development',
-    sameSite: 'Strict',
+    sameSite: 'None',
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
@@ -119,12 +121,7 @@ const refresh = asyncHandler(async (req, res, next) => {
 });
 
 const logout = (req, res, next) => {
-  res.clearCookie('accessToken', {
-    domain: '.railway.app',
-    httpOnly: true,
-    secure: true,
-    sameSite: process.env.NODE_ENV === 'production',
-  });
+  res.status(202).clearCookie('accessToken');
   return res.json({ message: "You've been logged out." });
 };
 
