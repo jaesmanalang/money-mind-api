@@ -103,7 +103,7 @@ const refresh = asyncHandler(async (req, res, next) => {
   const accessToken = generateAccessToken(foundUser.id);
 
   res.cookie('accessToken', accessToken, {
-    // domain: '.railway.app',
+    domain: '.railway.app',
     path: '/',
     httpOnly: true,
     secure: process.env.NODE_ENV !== 'development',
